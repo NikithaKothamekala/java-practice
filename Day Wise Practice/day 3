@@ -1,0 +1,925 @@
+Absolutely. Here are your **Day 3 Java GitHub-ready notes**, with each program clearly separated as you requested. I’ve included the **concept, code, output, dry run, key points, and interview tips**.
+
+# ☕ Java — Day 3
+
+## 📚 Topics Covered
+
+1. Reverse a Number
+2. Check Palindrome Number
+3. Sum of Digits
+4. Count Digits
+5. Find Factorial of a Number
+6. Find Largest Digit
+7. Find Smallest Digit
+8. Count Even Digits
+9. Count Odd Digits
+10. Sum of Even Digits
+
+---
+
+# 1️⃣ Reverse a Number
+
+### 📌 Problem
+
+Reverse the digits of a given number.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class ReverseANum {
+
+    public static void main(String[] args) {
+
+        int num = 12345;
+        int reverse = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            reverse = reverse * 10 + digit;
+            num = num / 10;
+        }
+
+        System.out.println("Reverse = " + reverse);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Reverse = 54321
+```
+
+### 🔍 Dry Run
+
+```text
+num = 12345
+
+digit = 5
+reverse = 0 * 10 + 5 = 5
+num = 1234
+
+digit = 4
+reverse = 5 * 10 + 4 = 54
+num = 123
+
+digit = 3
+reverse = 54 * 10 + 3 = 543
+num = 12
+
+digit = 2
+reverse = 543 * 10 + 2 = 5432
+num = 1
+
+digit = 1
+reverse = 5432 * 10 + 1 = 54321
+num = 0
+```
+
+### 🧠 Important Pattern
+
+```java
+digit = num % 10;
+num = num / 10;
+reverse = reverse * 10 + digit;
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)` where `n` is the number of digits
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Check Palindrome Number
+
+### 📌 Problem
+
+Check whether a number reads the same forward and backward.
+
+Example:
+
+```text
+121 → 121 ✅
+123 → 321 ❌
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class Palindrome {
+
+    public static void main(String[] args) {
+
+        int num = 121;
+        int reverse = 0;
+        int original = num;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            reverse = reverse * 10 + digit;
+            num = num / 10;
+        }
+
+        System.out.println("Reverse = " + reverse);
+
+        if (original == reverse) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not a Palindrome");
+        }
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Reverse = 121
+Palindrome
+```
+
+### 🔍 Dry Run
+
+```text
+Original = 121
+
+Reverse:
+1 → 1
+2 → 12
+1 → 121
+
+Original == Reverse
+
+121 == 121
+```
+
+Therefore:
+
+```text
+Palindrome
+```
+
+### ⚠️ Important
+
+Save the original number **before** changing `num`.
+
+```java
+int original = num;
+```
+
+Because:
+
+```java
+num = num / 10;
+```
+
+eventually makes `num = 0`.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Sum of Digits
+
+### 📌 Problem
+
+Find the sum of all digits of a number.
+
+Example:
+
+```text
+12345
+1 + 2 + 3 + 4 + 5 = 15
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SumOfDigits {
+
+    public static void main(String[] args) {
+
+        int num = 12345;
+        int sum = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            sum = sum + digit;
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 15
+```
+
+### 🔍 Dry Run
+
+| Digit | Sum |
+| ----: | --: |
+|     5 |   5 |
+|     4 |   9 |
+|     3 |  12 |
+|     2 |  14 |
+|     1 |  15 |
+
+### 🧠 Important Pattern
+
+```java
+sum = sum + digit;
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Count Digits
+
+### 📌 Problem
+
+Count the number of digits in a number.
+
+Example:
+
+```text
+12345 → 5 digits
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountDigits {
+
+    public static void main(String[] args) {
+
+        int num = 12345;
+        int count = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            count++;
+        }
+
+        System.out.println("Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Count = 5
+```
+
+### 🔍 Dry Run
+
+```text
+12345 → count = 1
+1234  → count = 2
+123   → count = 3
+12    → count = 4
+1     → count = 5
+0     → stop
+```
+
+### 🧠 Important Pattern
+
+Whenever one item is processed:
+
+```java
+count++;
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Find Factorial of a Number
+
+### 📌 Problem
+
+Find the factorial of a number.
+
+```text
+5! = 5 × 4 × 3 × 2 × 1
+   = 120
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class Factorial {
+
+    public static void main(String[] args) {
+
+        int num = 5;
+        int factorial = 1;
+
+        while (num > 0) {
+
+            factorial = num * factorial;
+            num--;
+        }
+
+        System.out.println("Factorial of 5 = " + factorial);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Factorial of 5 = 120
+```
+
+### 🔍 Dry Run
+
+| num | factorial |
+| --: | --------: |
+|   5 |         5 |
+|   4 |        20 |
+|   3 |        60 |
+|   2 |       120 |
+|   1 |       120 |
+
+### 🧠 Important
+
+For multiplication-based accumulation, start with:
+
+```java
+int factorial = 1;
+```
+
+❌ Not:
+
+```java
+int factorial = 0;
+```
+
+Because:
+
+```text
+0 × anything = 0
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Find Largest Digit
+
+### 📌 Problem
+
+Find the largest digit in a number.
+
+Example:
+
+```text
+58321 → 8
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class LargestDigit {
+
+    public static void main(String[] args) {
+
+        int num = 58321;
+        int largest = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            if (digit > largest) {
+                largest = digit;
+            }
+        }
+
+        System.out.println("Largest = " + largest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest = 8
+```
+
+### 🔍 Dry Run
+
+```text
+digit = 1 → largest = 1
+digit = 2 → largest = 2
+digit = 3 → largest = 3
+digit = 8 → largest = 8
+digit = 5 → largest = 8
+```
+
+### 🧠 Important Pattern
+
+```java
+if (value > largest) {
+    largest = value;
+}
+```
+
+This pattern is extremely important for DSA.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Find Smallest Digit
+
+### 📌 Problem
+
+Find the smallest digit in a number.
+
+Example:
+
+```text
+58321 → 1
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SmallestDigit {
+
+    public static void main(String[] args) {
+
+        int num = 58321;
+        int smallest = 9;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            if (digit < smallest) {
+                smallest = digit;
+            }
+        }
+
+        System.out.println("Smallest = " + smallest);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Smallest = 1
+```
+
+### 🔍 Dry Run
+
+```text
+digit = 1 → smallest = 1
+digit = 2 → smallest = 1
+digit = 3 → smallest = 1
+digit = 8 → smallest = 1
+digit = 5 → smallest = 1
+```
+
+### 🧠 Important Pattern
+
+```java
+if (value < smallest) {
+    smallest = value;
+}
+```
+
+For digits, initialize:
+
+```java
+int smallest = 9;
+```
+
+because `9` is the largest possible digit.
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Count Even Digits
+
+### 📌 Problem
+
+Count how many even digits are present.
+
+Example:
+
+```text
+583214
+
+8 → even
+2 → even
+4 → even
+
+Answer = 3
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountEvenDigits {
+
+    public static void main(String[] args) {
+
+        int num = 583214;
+        int count = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            if (digit % 2 == 0) {
+                count++;
+            }
+        }
+
+        System.out.println("Even Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Even Count = 3
+```
+
+### 🧠 Important
+
+Even number:
+
+```java
+digit % 2 == 0
+```
+
+Counting:
+
+```java
+count++;
+```
+
+Together:
+
+```java
+if (digit % 2 == 0) {
+    count++;
+}
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Count Odd Digits
+
+### 📌 Problem
+
+Count how many odd digits are present.
+
+### 💻 Code
+
+```java
+package p2;
+
+public class CountOddDigits {
+
+    public static void main(String[] args) {
+
+        int num = 583214;
+        int count = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            if (digit % 2 != 0) {
+                count++;
+            }
+        }
+
+        System.out.println("Odd Count = " + count);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Odd Count = 3
+```
+
+### 🔍 Dry Run
+
+```text
+5 → odd  → count = 1
+8 → even
+3 → odd  → count = 2
+2 → even
+1 → odd  → count = 3
+4 → even
+```
+
+### 🧠 Important
+
+Odd number:
+
+```java
+digit % 2 != 0
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Sum of Even Digits
+
+### 📌 Problem
+
+Find the sum of only the even digits.
+
+Example:
+
+```text
+583214
+
+Even digits:
+8 + 2 + 4 = 14
+```
+
+### 💻 Code
+
+```java
+package p2;
+
+public class SumOfEvenDigits {
+
+    public static void main(String[] args) {
+
+        int num = 583214;
+        int sum = 0;
+
+        while (num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+
+            if (digit % 2 == 0) {
+                sum = sum + digit;
+            }
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 14
+```
+
+### 🔍 Dry Run
+
+```text
+5 → odd  → skip
+8 → even → sum = 8
+3 → odd  → skip
+2 → even → sum = 10
+1 → odd  → skip
+4 → even → sum = 14
+```
+
+### 🧠 Important Pattern
+
+This combines three concepts:
+
+```java
+int digit = num % 10;
+
+if (digit % 2 == 0) {
+    sum = sum + digit;
+}
+
+num = num / 10;
+```
+
+### ⏱️ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 3 Important Patterns
+
+## 1. Extract Last Digit
+
+```java
+int digit = num % 10;
+```
+
+Example:
+
+```text
+12345 % 10 = 5
+```
+
+---
+
+## 2. Remove Last Digit
+
+```java
+num = num / 10;
+```
+
+Example:
+
+```text
+12345 / 10 = 1234
+```
+
+Because `num` is an `int`, Java performs integer division.
+
+---
+
+## 3. Count Something
+
+```java
+count++;
+```
+
+---
+
+## 4. Find Maximum
+
+```java
+if (value > largest) {
+    largest = value;
+}
+```
+
+---
+
+## 5. Find Minimum
+
+```java
+if (value < smallest) {
+    smallest = value;
+}
+```
+
+---
+
+## 6. Add Values
+
+```java
+sum = sum + value;
+```
+
+---
+
+## 7. Check Even
+
+```java
+value % 2 == 0
+```
+
+---
+
+## 8. Check Odd
+
+```java
+value % 2 != 0
+```
+
+---
+
+# 🎯 Interview Takeaways
+
+The biggest lesson from Day 3 is the **digit-processing pattern**:
+
+```java
+while (num > 0) {
+
+    int digit = num % 10;
+
+    // process digit
+
+    num = num / 10;
+}
+```
+
+Once you understand this pattern, you can solve many beginner/intermediate number problems.
+
+Common problems built from this pattern:
+
+* Reverse Number
+* Palindrome
+* Sum of Digits
+* Count Digits
+* Largest Digit
+* Smallest Digit
+* Count Even/Odd Digits
+* Sum of Even/Odd Digits
+* Armstrong Number
+* Strong Number
+* Digit Frequency
+* Product of Digits
+
+---
+
+# 🏆 Day 3 Summary
+
+```text
+Programs Completed: 10/10
+Main Concept: Number + Digit Processing
+Loop Used: while
+Important Operators: %, /, ++, --
+```
+
+### ⭐ Skills gained
+
+```text
+Basic Loops
+     ↓
+Digit Extraction
+     ↓
+Counting
+     ↓
+Summation
+     ↓
+Maximum / Minimum
+     ↓
+Conditional Processing
+```
+
+**Day 3 Java — COMPLETE ✅**
+
+These are ready to paste into your GitHub `Java/Day-3` notes. The large divider is included after **every program** so the programs stay visually separate.
