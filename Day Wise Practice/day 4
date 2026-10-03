@@ -1,0 +1,763 @@
+# 🚀 Day 4 — Java Practice Notes
+
+## 📚 Topics Covered
+
+1. Prime Number Check
+2. Sum of Natural Numbers
+3. Multiplication Table
+4. Count Vowels in a String
+5. Reverse a String
+6. Count Consonants in a String
+7. Count Digits in a String
+8. Count Uppercase Letters
+9. Count Lowercase Letters
+10. Count Spaces in a String
+
+---
+
+# 1️⃣ Prime Number Check
+
+### 💡 Problem
+
+Check whether a given number is prime.
+
+```java
+package p2;
+
+public class PrimeOrNot {
+    public static void main(String[] args) {
+        int num = 17;
+        boolean isPrime = true;
+
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                isPrime = false;
+            }
+        }
+
+        if (isPrime) {
+            System.out.println("Prime");
+        } else {
+            System.out.println("Not Prime");
+        }
+    }
+}
+```
+
+### Output
+
+```text
+Prime
+```
+
+### 🧠 Logic
+
+A prime number has exactly two factors:
+
+* 1
+* itself
+
+For `17`, we check whether any number from `2` to `16` divides it completely.
+
+`17 % i == 0` means `i` is a factor.
+
+### 🔍 Dry Run
+
+```text
+num = 17
+
+i = 2  → 17 % 2 ≠ 0
+i = 3  → 17 % 3 ≠ 0
+...
+i = 16 → 17 % 16 ≠ 0
+
+isPrime = true
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+### 🎯 Interview Tip
+
+A more optimized solution only checks up to:
+
+```java
+i * i <= num
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Sum of Natural Numbers
+
+### 💡 Problem
+
+Find the sum of numbers from `1` to `10`.
+
+```java
+package p2;
+
+public class SumOfNaturalNum {
+    public static void main(String[] args) {
+        int num = 10;
+        int sum = 0;
+
+        for (int i = 1; i <= num; i++) {
+            sum = sum + i;
+        }
+
+        System.out.println("Sum = " + sum);
+    }
+}
+```
+
+### Output
+
+```text
+Sum = 55
+```
+
+### 🧠 Logic
+
+Start with:
+
+```java
+sum = 0;
+```
+
+Then repeatedly add `i`.
+
+```text
+sum = 0
+sum = 0 + 1 = 1
+sum = 1 + 2 = 3
+sum = 3 + 3 = 6
+...
+sum = 55
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+### 🎯 Interview Tip
+
+There is also a mathematical formula:
+
+```text
+n × (n + 1) / 2
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Multiplication Table
+
+### 💡 Problem
+
+Print the multiplication table of `7`.
+
+```java
+package p2;
+
+public class MultiTableOf7 {
+    public static void main(String[] args) {
+        int num = 7;
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(num + " * " + i + " = " + (num * i));
+        }
+    }
+}
+```
+
+### Output
+
+```text
+7 * 1 = 7
+7 * 2 = 14
+7 * 3 = 21
+7 * 4 = 28
+7 * 5 = 35
+7 * 6 = 42
+7 * 7 = 49
+7 * 8 = 56
+7 * 9 = 63
+7 * 10 = 70
+```
+
+### 🧠 Important
+
+Do **not** change `num`.
+
+Use:
+
+```java
+num * i
+```
+
+instead of:
+
+```java
+num = num * i;
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Count Vowels in a String
+
+### 💡 Problem
+
+Count the vowels in `"programming"`.
+
+```java
+package p2;
+
+public class VowelsInString {
+    public static void main(String[] args) {
+        String str = "programming";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                ch == 'o' || ch == 'u') {
+                count++;
+            }
+        }
+
+        System.out.println("Vowels = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+Vowels = 3
+```
+
+### 🔍 Dry Run
+
+```text
+programming
+
+p → no
+r → no
+o → vowel → count = 1
+g → no
+r → no
+a → vowel → count = 2
+m → no
+m → no
+i → vowel → count = 3
+n → no
+g → no
+```
+
+### 🧠 Important
+
+For multiple possible conditions, use:
+
+```java
+||
+```
+
+which means **OR**.
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Reverse a String
+
+### 💡 Problem
+
+Reverse `"hello"`.
+
+```java
+package p2;
+
+public class ReverseAString {
+    public static void main(String[] args) {
+        String str = "hello";
+        String reverse = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            char ch = str.charAt(i);
+            reverse = reverse + ch;
+        }
+
+        System.out.println("Reverse String = " + reverse);
+    }
+}
+```
+
+### Output
+
+```text
+Reverse String = olleh
+```
+
+### 🧠 Key Concept
+
+Normal traversal:
+
+```text
+0 → 1 → 2 → 3 → 4
+h → e → l → l → o
+```
+
+Reverse traversal:
+
+```text
+4 → 3 → 2 → 1 → 0
+o → l → l → e → h
+```
+
+Therefore:
+
+```java
+for (int i = str.length() - 1; i >= 0; i--)
+```
+
+### 🔍 Dry Run
+
+```text
+reverse = ""
+
+i = 4 → o → "o"
+i = 3 → l → "ol"
+i = 2 → l → "oll"
+i = 1 → e → "olle"
+i = 0 → h → "olleh"
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(n)`
+
+### 🎯 Interview Tip
+
+String reversal is a very common beginner interview problem.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Count Consonants in a String
+
+### 💡 Problem
+
+Count consonants in `"programming"`.
+
+```java
+package p2;
+
+public class ConsonantsInString {
+    public static void main(String[] args) {
+        String str = "programming";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch != 'a' && ch != 'e' && ch != 'i' &&
+                ch != 'o' && ch != 'u') {
+                count++;
+            }
+        }
+
+        System.out.println("Consonants = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+Consonants = 8
+```
+
+### 🧠 Important
+
+For **NOT a vowel**, we use:
+
+```java
+&&
+```
+
+Example:
+
+```java
+ch != 'a' && ch != 'e'
+```
+
+This means:
+
+> ch is not `a` AND not `e`.
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+### ⚠️ Interview Note
+
+This simple version assumes the string contains letters. If spaces, digits, or special characters are possible, first check whether the character is actually a letter.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Count Digits in a String
+
+### 💡 Problem
+
+Count digits in `"hello12345"`.
+
+```java
+package p2;
+
+public class CountDigitsInString {
+    public static void main(String[] args) {
+        String str = "hello12345";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= '0' && ch <= '9') {
+                count++;
+            }
+        }
+
+        System.out.println("Digits Count = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+Digits Count = 5
+```
+
+### 🧠 Character Range
+
+Digits are between:
+
+```text
+'0' → '9'
+```
+
+Therefore:
+
+```java
+ch >= '0' && ch <= '9'
+```
+
+### 🔍 Example
+
+```text
+h → no
+e → no
+l → no
+l → no
+o → no
+1 → yes
+2 → yes
+3 → yes
+4 → yes
+5 → yes
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Count Uppercase Letters
+
+### 💡 Problem
+
+Count uppercase letters in `"HelloWORLD"`.
+
+```java
+package p2;
+
+public class UppercaseLetters {
+    public static void main(String[] args) {
+        String str = "HelloWORLD";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= 'A' && ch <= 'Z') {
+                count++;
+            }
+        }
+
+        System.out.println("Upper case letters = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+Upper case letters = 6
+```
+
+### 🧠 Character Range
+
+Uppercase English letters:
+
+```text
+'A' → 'Z'
+```
+
+So:
+
+```java
+ch >= 'A' && ch <= 'Z'
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Count Lowercase Letters
+
+### 💡 Problem
+
+Count lowercase letters in `"HelloWORLDjava"`.
+
+```java
+package p2;
+
+public class LowerCaseLetters {
+    public static void main(String[] args) {
+        String str = "HelloWORLDjava";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch >= 'a' && ch <= 'z') {
+                count++;
+            }
+        }
+
+        System.out.println("Lower case letters = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+Lower case letters = 8
+```
+
+### 🧠 Character Range
+
+Lowercase English letters:
+
+```text
+'a' → 'z'
+```
+
+Therefore:
+
+```java
+ch >= 'a' && ch <= 'z'
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Count Spaces in a String
+
+### 💡 Problem
+
+Count spaces in `"Java is very easy"`.
+
+```java
+package p2;
+
+public class CountSpaces {
+    public static void main(String[] args) {
+        String str = "Java is very easy";
+        int count = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == ' ') {
+                count++;
+            }
+        }
+
+        System.out.println("No of Spaces = " + count);
+    }
+}
+```
+
+### Output
+
+```text
+No of Spaces = 3
+```
+
+### 🧠 Important
+
+A space is represented by:
+
+```java
+' '
+```
+
+Notice that there is a space **between the single quotes**.
+
+### 🔍 Dry Run
+
+```text
+Java is very easy
+
+Java → 0 spaces
+" "  → 1
+is   → 1
+" "  → 2
+very → 2
+" "  → 3
+easy → 3
+```
+
+### ⏱ Complexity
+
+* Time: `O(n)`
+* Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 4 Important Java Patterns
+
+## 1. Traverse a String
+
+```java
+for (int i = 0; i < str.length(); i++) {
+    char ch = str.charAt(i);
+}
+```
+
+## 2. Reverse Traversal
+
+```java
+for (int i = str.length() - 1; i >= 0; i--) {
+    char ch = str.charAt(i);
+}
+```
+
+## 3. Check Digit
+
+```java
+ch >= '0' && ch <= '9'
+```
+
+## 4. Check Uppercase
+
+```java
+ch >= 'A' && ch <= 'Z'
+```
+
+## 5. Check Lowercase
+
+```java
+ch >= 'a' && ch <= 'z'
+```
+
+## 6. Check Vowel
+
+```java
+ch == 'a' || ch == 'e' || ch == 'i' ||
+ch == 'o' || ch == 'u'
+```
+
+## 7. Count Something
+
+Basic pattern:
+
+```java
+int count = 0;
+
+if (condition) {
+    count++;
+}
+```
+
+---
+
+# 🎯 Day 4 Interview Takeaways
+
+### Remember these 5 patterns:
+
+```text
+String traversal
+      ↓
+for loop + charAt()
+
+Reverse
+      ↓
+length() - 1 → 0
+
+Count
+      ↓
+count++
+
+Character checking
+      ↓
+'A'–'Z', 'a'–'z', '0'–'9'
+
+Multiple conditions
+      ↓
+&& and ||
+```
+
+## 🏆 Day 4 Status
+
+**Java: ✅ COMPLETED — 10/10**
+
+Next:
+
+**Day 4 DSA → Question 1**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🚀 Progress
+
+| Day   | Java    | DSA         |
+| ----- | ------- | ----------- |
+| Day 1 | ✅ 10/10 | ✅ 10/10     |
+| Day 2 | ✅ 10/10 | ✅ 10/10     |
+| Day 3 | ✅ 10/10 | ✅ 10/10     |
+| Day 4 | ✅ 10/10 | 🔜 Starting |
+
+**Goal:** Build strong coding fundamentals first → DSA → interview-level problem solving → MNC coding preparation. 💪
