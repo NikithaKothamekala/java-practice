@@ -1,0 +1,1026 @@
+Absolutely. Here are your **Day 6 Java GitHub-ready notes**, including the new **Tips & Tricks** section you requested.
+
+# ☕ Day 6 — Java
+## Methods + Recursion Basics
+
+Today we learned how to create and call methods, pass parameters, return values, use conditions and loops inside methods, and understand variable scope.
+
+---
+
+# 1️⃣ Create a Method to Add Two Numbers
+
+### 💡 Concept
+A method can accept parameters, perform an operation, and return a result.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodTwoAdd2Num {
+
+    static int add(int a, int b) {
+        int sum = a + b;
+        return sum;
+    }
+
+    public static void main(String[] args) {
+
+        int result = add(10, 20);
+        System.out.println("Sum = " + result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+Sum = 30
+```
+
+### 🔍 Dry Run
+
+```text
+add(10, 20)
+     ↓
+a = 10, b = 20
+     ↓
+sum = 10 + 20
+     ↓
+sum = 30
+     ↓
+return 30
+     ↓
+result = 30
+```
+
+### 🧠 Important Points
+- `add` is the method name.
+- `a` and `b` are parameters.
+- `int` means the method returns an integer.
+- `return` sends the result back to the caller.
+
+### ⚡ Tip & Trick
+Remember:
+
+```text
+Input → Method → Processing → Return → Result
+```
+
+### 🎯 Interview Tip
+If a method is declared `int`, it must return an `int`.
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Create a Method to Check Even or Odd
+
+### 💡 Concept
+A method can return a `boolean` value: `true` or `false`.
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodToCheckEvenOrOdd {
+
+    static boolean isEven(int num) {
+        return num % 2 == 0;
+    }
+
+    public static void main(String[] args) {
+
+        boolean result = isEven(10);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+true
+```
+
+### 🔍 Dry Run
+
+```text
+num = 10
+
+10 % 2 = 0
+
+0 == 0
+   ↓
+true
+```
+
+### 🧠 Important Points
+
+```java
+num % 2 == 0
+```
+
+means the number is even.
+
+### ⚡ Tip & Trick
+
+For a boolean method, you can often directly return the condition:
+
+```java
+return condition;
+```
+
+Instead of:
+
+```java
+boolean result = false;
+
+if(condition) {
+    result = true;
+}
+
+return result;
+```
+
+### 🎯 Interview Tip
+Knowing when a condition itself can be returned makes your code shorter and cleaner.
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Create a Method to Find the Square of a Number
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodSquareOfNum {
+
+    static int square(int num) {
+        return num * num;
+    }
+
+    public static void main(String[] args) {
+
+        int result = square(5);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+25
+```
+
+### 🔍 Dry Run
+
+```text
+square(5)
+   ↓
+5 × 5
+   ↓
+25
+   ↓
+return 25
+```
+
+### 🧠 Important Points
+- `num` receives the input.
+- `num * num` calculates the square.
+- The method returns an `int`.
+
+### ⚡ Tip & Trick
+
+If the method only contains one calculation, you can often directly return the expression:
+
+```java
+return num * num;
+```
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Create a Method to Find the Maximum of Two Numbers
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodMaxOfTwoNumbers {
+
+    static int max(int a, int b) {
+
+        int result;
+
+        if(a > b) {
+            result = a;
+        } else {
+            result = b;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        int result = max(15, 20);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+20
+```
+
+### 🔍 Dry Run
+
+```text
+a = 15
+b = 20
+
+15 > 20 → false
+
+result = 20
+
+return 20
+```
+
+### 🧠 Important Concept — Scope
+
+A variable's **scope** means the area where that variable can be accessed.
+
+```java
+int result;
+
+if(a > b) {
+    result = a;
+}
+```
+
+`result` was declared outside the `if`, so it can still be used after the `if`.
+
+But:
+
+```java
+if(a > b) {
+    int max = a;
+}
+
+System.out.println(max); // ERROR
+```
+
+`max` was created inside the `{ }` block.
+
+### ⚡ Tip & Trick
+
+> `{ }` creates a boundary for variable scope.
+
+### 🎯 Interview Tip
+Scope is a very common programming concept. Always know where a variable is declared and where it can be accessed.
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Create a Method to Find the Minimum of Two Numbers
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodOfMinOf2Num {
+
+    static int min(int a, int b) {
+
+        int result;
+
+        if(a < b) {
+            result = a;
+        } else {
+            result = b;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        int result = min(15, 20);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+15
+```
+
+### 🔍 Dry Run
+
+```text
+a = 15
+b = 20
+
+15 < 20 → true
+
+result = 15
+
+return 15
+```
+
+### 🧠 Important Points
+
+For maximum:
+
+```java
+a > b
+```
+
+For minimum:
+
+```java
+a < b
+```
+
+### ⚡ Tip & Trick
+
+Remember:
+
+```text
+MAX → >
+MIN → <
+```
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Create a Method to Find the Largest of Three Numbers
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodLargestOf3Num {
+
+    static int maxOfThree(int a, int b, int c) {
+
+        int result;
+
+        if(a > b && a > c) {
+            result = a;
+        } else if(b > a && b > c) {
+            result = b;
+        } else {
+            result = c;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        int result = maxOfThree(10, 25, 15);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+25
+```
+
+### 🔍 Dry Run
+
+```text
+a = 10
+b = 25
+c = 15
+
+10 > 25 && 10 > 15
+false
+
+25 > 10 && 25 > 15
+true
+
+result = 25
+
+return 25
+```
+
+### 🧠 Important Points
+
+`&&` means **both conditions must be true**.
+
+```java
+a > b && a > c
+```
+
+means:
+
+> `a` must be greater than both `b` and `c`.
+
+### ⚡ Tip & Trick
+
+For finding the largest:
+
+```text
+Assume a is largest
+Compare b
+Compare c
+Return largest
+```
+
+This approach becomes even more useful when the number of values increases.
+
+### 🎯 Interview Tip
+Understand the difference between:
+
+```java
+&&
+```
+
+and:
+
+```java
+||
+```
+
+`&&` → ALL conditions must be true.
+
+`||` → AT LEAST ONE condition must be true.
+
+### ⏱️ Complexity
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Create a Method to Calculate Sum from 1 to N
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodSumof1ToN {
+
+    static int sumN(int n) {
+
+        int sum = 0;
+
+        for(int i = 1; i <= n; i++) {
+            sum = sum + i;
+        }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+
+        int result = sumN(5);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+15
+```
+
+### 🔍 Dry Run
+
+```text
+n = 5
+
+i = 1 → sum = 1
+i = 2 → sum = 3
+i = 3 → sum = 6
+i = 4 → sum = 10
+i = 5 → sum = 15
+```
+
+### 🧠 Important Points
+
+When the question says:
+
+> Sum from 1 to N
+
+use:
+
+```java
+i <= n
+```
+
+not:
+
+```java
+i < n
+```
+
+### ⚡ Tip & Trick
+
+Remember:
+
+```text
+<  → exclude
+<= → include
+```
+
+### 🎯 Interview Tip
+
+There is also a mathematical solution:
+
+```java
+int sum = n * (n + 1) / 2;
+```
+
+This reduces the algorithm from `O(n)` to `O(1)`.
+
+### ⏱️ Complexity
+- Loop solution: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Create a Method to Count Even Numbers from 1 to N
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodCountEvenNumFrom1ToN {
+
+    static int countEven(int n) {
+
+        int count = 0;
+
+        for(int i = 2; i <= n; i++) {
+
+            if(i % 2 == 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+
+        int result = countEven(10);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+5
+```
+
+### 🔍 Dry Run
+
+```text
+2  → count = 1
+4  → count = 2
+6  → count = 3
+8  → count = 4
+10 → count = 5
+```
+
+### 🧠 Important Points
+
+Even number:
+
+```java
+i % 2 == 0
+```
+
+### ⚡ Tip & Trick
+
+You can start at `2` instead of `1` because `1` cannot be even.
+
+### 🎯 Interview Tip
+
+This combines three important patterns:
+
+```text
+LOOP + CONDITION + COUNTER
+```
+
+This pattern appears frequently in beginner and interview problems.
+
+### ⏱️ Complexity
+- Time: `O(n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Create a Method to Count Digits in a Number
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodCountDigitsInANum {
+
+    static int countDigits(int num) {
+
+        int count = 0;
+
+        while(num > 0) {
+
+            num = num / 10;
+            count++;
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+
+        int result = countDigits(5832);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+4
+```
+
+### 🔍 Dry Run
+
+```text
+5832 → 583 → 58 → 5 → 0
+  ↓      ↓     ↓    ↓
+  1      2     3    4
+```
+
+### 🧠 Important Digit Pattern
+
+For processing digits:
+
+```java
+while(num > 0) {
+
+    int digit = num % 10;
+
+    num = num / 10;
+}
+```
+
+- `% 10` → gets the last digit.
+- `/ 10` → removes the last digit.
+
+### ⚡ Tip & Trick
+
+Memorize this:
+
+> **`% 10` = GET**  
+> **`/ 10` = REMOVE**
+
+This pattern is extremely important for number-based DSA problems.
+
+### 🎯 Interview Tip
+
+This pattern is used in:
+
+- Reverse number
+- Palindrome number
+- Sum of digits
+- Count digits
+- Largest digit
+- Smallest digit
+- Count even/odd digits
+
+### ⏱️ Complexity
+- Time: `O(log n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Create a Method to Find Sum of Digits
+
+### 💻 Code
+
+```java
+package p3;
+
+public class MethodSumOfDigits {
+
+    static int sumDigits(int num) {
+
+        int sum = 0;
+
+        while(num > 0) {
+
+            int digit = num % 10;
+            num = num / 10;
+            sum = sum + digit;
+        }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+
+        int result = sumDigits(5832);
+        System.out.println(result);
+    }
+}
+```
+
+### ▶️ Output
+
+```text
+18
+```
+
+### 🔍 Dry Run
+
+For `5832`:
+
+```text
+num = 5832
+digit = 2
+sum = 2
+num = 583
+
+digit = 3
+sum = 5
+num = 58
+
+digit = 8
+sum = 13
+num = 5
+
+digit = 5
+sum = 18
+num = 0
+```
+
+Final:
+
+```text
+5 + 8 + 3 + 2 = 18
+```
+
+### 🧠 Important Points
+
+The three-line digit pattern:
+
+```java
+int digit = num % 10;
+num = num / 10;
+sum = sum + digit;
+```
+
+### ⚡ Tip & Trick
+
+Don't confuse:
+
+```java
+sum = sum + digit;  // ✅
+```
+
+with:
+
+```java
+sum = sum + num;    // ❌
+```
+
+After `/ 10`, `num` is the **remaining number**, while `digit` is the **digit you extracted**.
+
+### 🎯 Interview Tip
+
+If you see a number and the problem asks about individual digits, immediately think:
+
+```text
+% 10 → extract
+/ 10 → remove
+```
+
+### ⏱️ Complexity
+- Time: `O(log n)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 Day 6 — Master Tips & Tricks
+
+## 1. Method Pattern
+
+```java
+static returnType methodName(parameters) {
+    // logic
+    return result;
+}
+```
+
+Think:
+
+```text
+INPUT
+  ↓
+PARAMETERS
+  ↓
+PROCESS
+  ↓
+RETURN
+  ↓
+OUTPUT
+```
+
+---
+
+## 2. Return Type Rule
+
+Always match the return type with the returned value:
+
+```text
+int     → return int
+boolean → return boolean
+String  → return String
+double  → return double
+```
+
+Example:
+
+```java
+static int square(int n) {
+    return n * n;
+}
+```
+
+---
+
+## 3. Scope Rule
+
+> **A variable can only be accessed within its scope.**
+
+Remember:
+
+```java
+if(condition) {
+    int x = 10;
+}
+```
+
+`x` generally cannot be used outside that `{ }` block.
+
+---
+
+## 4. Loop Boundary Trick
+
+```text
+i < n
+```
+
+means stop **before** `n`.
+
+```text
+i <= n
+```
+
+means include `n`.
+
+---
+
+## 5. Number Digit Trick
+
+🔥 Memorize this permanently:
+
+```java
+digit = num % 10;
+num = num / 10;
+```
+
+```text
+% 10 → GET last digit
+/ 10 → REMOVE last digit
+```
+
+---
+
+## 6. Counting Pattern
+
+Whenever the question says:
+
+- Count even numbers
+- Count positive numbers
+- Count occurrences
+- Count digits
+
+Think:
+
+```java
+int count = 0;
+
+if(condition) {
+    count++;
+}
+```
+
+---
+
+## 7. Sum Pattern
+
+Whenever the question says:
+
+- Sum numbers
+- Sum digits
+- Sum array elements
+
+Think:
+
+```java
+int sum = 0;
+
+sum = sum + value;
+```
+
+---
+
+# 🎯 Day 6 Interview Checklist
+
+By the end of Day 6, you should understand:
+
+- [x] What is a method?
+- [x] What is a parameter?
+- [x] What is a return value?
+- [x] Difference between `int` and `boolean` return types
+- [x] How to call a method
+- [x] Variable scope
+- [x] `if / else if / else` inside methods
+- [x] Loops inside methods
+- [x] Counting pattern
+- [x] Sum pattern
+- [x] Digit extraction pattern
+- [x] `% 10`
+- [x] `/ 10`
+- [x] `<` vs `<=`
+- [x] `&&` conditions
+
+## 🚀 Key takeaway
+
+Don't memorize 10 separate programs.
+
+Learn the **patterns**:
+
+```text
+METHOD
+PARAMETER
+   ↓
+LOGIC
+   ↓
+RESULT
+   ↓
+RETURN
+```
+
+and:
+
+```text
+DIGIT PROBLEMS:
+% 10 → GET
+/ 10 → REMOVE
+```
+
+These patterns will appear again and again when we move deeper into **DSA**.
+
+Day 6 Java is now documented with the **Tips & Tricks** section included.
