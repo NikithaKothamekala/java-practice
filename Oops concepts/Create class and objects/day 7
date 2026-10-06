@@ -1,0 +1,957 @@
+Absolutely. 🔥 Here are your **Day 7 Java GitHub-ready notes**. Since this day introduced OOP, I've organized it around **Classes, Objects, and Methods**.
+
+# ☕ DAY 7 — JAVA
+## 📌 OOP Basics — Classes, Objects & Methods
+
+---
+
+# 🧠 What is OOP?
+
+**OOP = Object-Oriented Programming**
+
+Java is an object-oriented programming language.
+
+OOP organizes programs using **classes and objects**.
+
+### Main OOP concepts:
+
+1. Class
+2. Object
+3. Encapsulation
+4. Inheritance
+5. Polymorphism
+6. Abstraction
+
+Today we started with:
+
+> **Class → Object → Instance Variables → Methods**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 1️⃣ Create a Class and Object
+
+### 🎯 Problem
+
+Create a class with `name` and `age`, create an object, and assign values.
+
+### Code
+
+```java
+class CreateClassAndObject {
+
+    String name;
+    int age;
+
+    public static void main(String[] args) {
+
+        CreateClassAndObject s = new CreateClassAndObject();
+
+        s.name = "Rahul";
+        s.age = 21;
+
+        System.out.println("Name = " + s.name);
+        System.out.println("Age = " + s.age);
+    }
+}
+```
+
+### Output
+
+```text
+Name = Rahul
+Age = 21
+```
+
+### 🧠 Key Concept
+
+```java
+CreateClassAndObject s = new CreateClassAndObject();
+```
+
+This creates an object.
+
+Breakdown:
+
+```text
+CreateClassAndObject → class type
+s                    → object reference
+new                   → creates object
+CreateClassAndObject() → constructor call
+```
+
+### 💡 Memory Trick
+
+> **Class = Blueprint** 🏗️  
+> **Object = Real thing created from blueprint**
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 2️⃣ Create Two Objects from the Same Class
+
+### 🎯 Problem
+
+Create two Student objects with different values.
+
+### Code
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        Student s2 = new Student();
+
+        s1.name = "Rahul";
+        s1.age = 21;
+
+        s2.name = "Arjun";
+        s2.age = 22;
+
+        System.out.println("Name = " + s1.name);
+        System.out.println("Age = " + s1.age);
+
+        System.out.println("Name = " + s2.name);
+        System.out.println("Age = " + s2.age);
+    }
+}
+```
+
+### Output
+
+```text
+Name = Rahul
+Age = 21
+Name = Arjun
+Age = 22
+```
+
+### 🧠 Important Concept
+
+One class can create **many objects**.
+
+```text
+Student class
+     ↓
+ ┌─────────┐
+ │   s1    │ → Rahul, 21
+ └─────────┘
+
+ ┌─────────┐
+ │   s2    │ → Arjun, 22
+ └─────────┘
+```
+
+Each object has its **own data**.
+
+### 💡 Interview Tip
+
+> A class is a blueprint; an object is an instance of that class.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 3️⃣ Create and Call a Method
+
+### 🎯 Problem
+
+Create a method `display()` that prints student information.
+
+### Code
+
+```java
+class VoidStudent {
+
+    String name;
+    int age;
+
+    void display() {
+        System.out.println(name);
+        System.out.println(age);
+    }
+
+    public static void main(String[] args) {
+
+        VoidStudent s = new VoidStudent();
+
+        s.name = "Rahul";
+        s.age = 21;
+
+        s.display();
+    }
+}
+```
+
+### Output
+
+```text
+Rahul
+21
+```
+
+### 🧠 Key Concept
+
+A method represents an **action/behavior** of an object.
+
+```text
+Student
+│
+├── name → data
+├── age  → data
+│
+└── display() → behavior
+```
+
+### Memory Trick
+
+> **Variables = What an object HAS**  
+> **Methods = What an object DOES**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 4️⃣ Calculate Student's Next Age
+
+### 🎯 Problem
+
+Use a method to calculate the student's age next year.
+
+### Code
+
+```java
+class NextAge {
+
+    String name;
+    int age;
+
+    void nextAge() {
+        System.out.println(
+            name + "'s age next year = " + (age + 1)
+        );
+    }
+
+    public static void main(String[] args) {
+
+        NextAge s = new NextAge();
+
+        s.name = "Rahul";
+        s.age = 21;
+
+        s.nextAge();
+    }
+}
+```
+
+### Output
+
+```text
+Rahul's age next year = 22
+```
+
+### 🧠 Pattern
+
+```text
+Object data
+    ↓
+age = 21
+    ↓
+Method
+    ↓
+age + 1
+    ↓
+22
+```
+
+### Important
+
+The calculation belongs inside the method because the method is responsible for the action.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 5️⃣ Check Passing Grade
+
+### 🎯 Problem
+
+Check whether a student passes.
+
+Condition:
+
+```text
+marks >= 40 → Pass
+marks < 40  → Fail
+```
+
+### Code
+
+```java
+class PassingGrade {
+
+    String name;
+    int marks;
+
+    void checkResult() {
+
+        if(marks >= 40) {
+            System.out.println(name + ": Pass");
+        }
+        else {
+            System.out.println(name + ": Fail");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        PassingGrade s = new PassingGrade();
+
+        s.name = "Rahul";
+        s.marks = 65;
+
+        s.checkResult();
+    }
+}
+```
+
+### Output
+
+```text
+Rahul: Pass
+```
+
+### 🧠 Key Concept
+
+A method can contain normal programming logic such as:
+
+- `if`
+- `else`
+- loops
+- calculations
+
+OOP does not replace these concepts—it organizes them inside classes and objects.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 6️⃣ Find Largest of Two Numbers
+
+### 🎯 Problem
+
+Find the larger of two object variables.
+
+### Code
+
+```java
+class LargestOfTwo {
+
+    int a;
+    int b;
+
+    void findLargest() {
+
+        if(a > b) {
+            System.out.println("Largest = " + a);
+        }
+        else {
+            System.out.println("Largest = " + b);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        LargestOfTwo s = new LargestOfTwo();
+
+        s.a = 25;
+        s.b = 40;
+
+        s.findLargest();
+    }
+}
+```
+
+### Output
+
+```text
+Largest = 40
+```
+
+### 🧠 Pattern
+
+```text
+a > b → a is largest
+otherwise → b is largest
+```
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 7️⃣ Check Even or Odd Using a Method
+
+### 🎯 Problem
+
+Check whether an object's number is even or odd.
+
+### Code
+
+```java
+class CheckEvenOrOdd {
+
+    int number;
+
+    void checkEvenOdd() {
+
+        if(number % 2 == 0) {
+            System.out.println("Even");
+        }
+        else {
+            System.out.println("Odd");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        CheckEvenOrOdd s = new CheckEvenOrOdd();
+
+        s.number = 24;
+
+        s.checkEvenOdd();
+    }
+}
+```
+
+### Output
+
+```text
+Even
+```
+
+### 🧠 Remember
+
+```java
+number % 2 == 0
+```
+
+→ Even
+
+```java
+number % 2 != 0
+```
+
+→ Odd
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 8️⃣ Calculate Square Using a Method
+
+### 🎯 Problem
+
+Calculate the square of an object's number.
+
+### Code
+
+```java
+class SquareOfNum {
+
+    int number;
+
+    void calculateSquare() {
+
+        int square = number * number;
+
+        System.out.println("Square = " + square);
+    }
+
+    public static void main(String[] args) {
+
+        SquareOfNum s = new SquareOfNum();
+
+        s.number = 7;
+
+        s.calculateSquare();
+    }
+}
+```
+
+### Output
+
+```text
+Square = 49
+```
+
+### 🧠 Important Concept: `void`
+
+```java
+void calculateSquare()
+```
+
+`void` means:
+
+> The method does not return a value.
+
+But variables inside the method **still need data types**:
+
+```java
+int square = number * number;
+```
+
+### Important distinction
+
+```text
+void
+ ↓
+Method return type
+
+int
+ ↓
+Variable data type
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 9️⃣ Calculate Cube Using a Method
+
+### 🎯 Problem
+
+Calculate the cube of a number.
+
+### Code
+
+```java
+class CubeOfNum {
+
+    int number;
+
+    void calculateCube() {
+
+        int cube = number * number * number;
+
+        System.out.println("Cube = " + cube);
+    }
+
+    public static void main(String[] args) {
+
+        CubeOfNum s = new CubeOfNum();
+
+        s.number = 4;
+
+        s.calculateCube();
+    }
+}
+```
+
+### Output
+
+```text
+Cube = 64
+```
+
+### 🧠 Formula
+
+```text
+Square = number × number
+
+Cube = number × number × number
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔟 Calculate Sum of Two Numbers Using a Method
+
+### 🎯 Problem
+
+Calculate the sum of two object variables.
+
+### Code
+
+```java
+class SumOfTwoNumbers {
+
+    int a;
+    int b;
+
+    void calculateSum() {
+
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+
+    public static void main(String[] args) {
+
+        SumOfTwoNumbers s = new SumOfTwoNumbers();
+
+        s.a = 25;
+        s.b = 15;
+
+        s.calculateSum();
+    }
+}
+```
+
+### Output
+
+```text
+Sum = 40
+```
+
+### 🧠 Pattern
+
+```text
+Object
+ ↓
+a = 25
+b = 15
+ ↓
+calculateSum()
+ ↓
+25 + 15
+ ↓
+40
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 DAY 7 — MOST IMPORTANT CONCEPTS
+
+## 1. Class
+
+A class is a **blueprint/template**.
+
+```java
+class Student {
+    String name;
+    int age;
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 2. Object
+
+An object is an **instance of a class**.
+
+```java
+Student s = new Student();
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 3. Instance Variables
+
+Variables declared inside a class but outside methods are commonly called **instance variables**.
+
+```java
+class Student {
+
+    String name;
+    int age;
+}
+```
+
+Each object gets its own values.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 4. Method
+
+A method defines an action/behavior.
+
+```java
+void display() {
+    System.out.println(name);
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🔥 The Complete OOP Pattern
+
+This is the most important pattern from Day 7:
+
+```text
+              CLASS
+                ↓
+        ┌───────────────┐
+        │ Variables     │
+        │ Methods       │
+        └───────────────┘
+                ↓
+          CREATE OBJECT
+                ↓
+        Assign object data
+                ↓
+          CALL METHOD
+                ↓
+       Method performs task
+```
+
+Example:
+
+```java
+Student s = new Student();
+
+s.name = "Rahul";
+s.age = 21;
+
+s.display();
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🧠 COMMON MISTAKES FROM TODAY
+
+## ❌ Mistake 1 — Putting instance variables inside a method
+
+Wrong:
+
+```java
+void display() {
+    String name;
+    int age;
+}
+```
+
+These are **local variables**.
+
+Correct:
+
+```java
+class Student {
+
+    String name;
+    int age;
+
+    void display() {
+        System.out.println(name);
+        System.out.println(age);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ❌ Mistake 2 — Calling the wrong method name
+
+Java is **case-sensitive**.
+
+```java
+void nextAge()
+```
+
+must be called as:
+
+```java
+s.nextAge();
+```
+
+Not:
+
+```java
+s.NextAge();
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ❌ Mistake 3 — Forgetting to assign object values
+
+Wrong:
+
+```java
+Student s = new Student();
+
+s.display();
+```
+
+If values were never assigned, default values may be used.
+
+Correct:
+
+```java
+Student s = new Student();
+
+s.name = "Rahul";
+s.age = 21;
+
+s.display();
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## ❌ Mistake 4 — Confusing `void` with variable data types
+
+Wrong idea:
+
+> "Because the method is void, variables don't need data types."
+
+Correct:
+
+```java
+void calculateSquare() {
+
+    int square = number * number;
+}
+```
+
+`void` → method return type.
+
+`int` → variable data type.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 💡 DAY 7 TIPS & TRICKS
+
+### 🔑 Tip 1
+
+Whenever you see:
+
+```java
+new ClassName()
+```
+
+think:
+
+> **A new object is being created.**
+
+### 🔑 Tip 2
+
+Whenever you see:
+
+```java
+object.variable
+```
+
+think:
+
+> **Accessing that object's data.**
+
+### 🔑 Tip 3
+
+Whenever you see:
+
+```java
+object.method()
+```
+
+think:
+
+> **Calling that object's behavior/action.**
+
+### 🔑 Tip 4
+
+Remember:
+
+```text
+Class → Blueprint
+Object → Instance
+Variable → Data
+Method → Behavior
+```
+
+### 🔑 Tip 5
+
+Java is case-sensitive:
+
+```text
+nextAge()
+NextAge()
+NEXTAGE()
+```
+
+are different names.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🎯 INTERVIEW TIPS
+
+### Q: What is a class?
+
+**Answer:**
+
+> A class is a blueprint or template used to create objects. It defines the data and behavior that objects can have.
+
+### Q: What is an object?
+
+**Answer:**
+
+> An object is an instance of a class.
+
+### Q: What is the difference between a class and an object?
+
+```text
+Class → Blueprint
+Object → Instance created from the blueprint
+```
+
+### Q: Why do we use `new`?
+
+> The `new` keyword is used to create an object and allocate memory for it.
+
+### Q: What is a method?
+
+> A method is a block of code that performs a specific task or represents behavior.
+
+### Q: What does `void` mean?
+
+> `void` means the method does not return a value.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🏆 DAY 7 COMPLETION
+
+### Java Progress
+
+**10 / 10 Problems Completed ✅**
+
+### Topics Covered
+
+```text
+✅ Class
+✅ Object
+✅ Instance Variables
+✅ Multiple Objects
+✅ Methods inside Classes
+✅ Object Data
+✅ Object Behavior
+✅ void Methods
+✅ Conditions inside Methods
+✅ Calculations inside Methods
+```
+
+### ⭐ Main Learning
+
+> **A class combines data and behavior, and objects are instances of that class.**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🚀 NEXT STEP
+
+Continue building OOP fundamentals:
+
+```text
+Classes & Objects
+       ↓
+Methods
+       ↓
+Constructors
+       ↓
+this keyword
+       ↓
+Method Parameters
+       ↓
+Encapsulation
+       ↓
+Inheritance
+       ↓
+Polymorphism
+       ↓
+Abstraction
+```
+
+The goal is not just to memorize OOP definitions, but to be able to **design and use classes naturally while solving coding problems**.
