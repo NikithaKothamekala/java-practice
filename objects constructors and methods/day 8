@@ -1,0 +1,466 @@
+# ☕ Java Day 8 — OOP Basics
+
+## 📌 Topics Covered
+
+1. Parameterized Constructor
+2. Multiple Objects
+3. Instance Methods
+4. Instance Variables
+5. Conditions and Calculations
+
+---
+
+## 1. Create a Student Class Using a Parameterized Constructor
+
+### 💡 Concept
+
+A constructor is a special member of a class used to initialize an object.
+
+- Its name must match the class name.
+- It has no return type, not even `void`.
+- A parameterized constructor accepts values when an object is created.
+
+### 💻 Code
+
+```java
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student("Rahul", 21);
+
+        System.out.println("Name: " + s.name);
+        System.out.println("Age: " + s.age);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Name: Rahul
+Age: 21
+```
+
+### 🧠 Memory Trick
+
+**Constructor = Initial setup of an object.**
+
+`this.name` refers to the object's field, while `name` refers to the constructor parameter.
+
+---
+
+## 2. Create Two Student Objects Using the Same Constructor
+
+### 💡 Concept
+
+One class can create many objects. Each object can store different values in its instance variables.
+
+### 💻 Code
+
+```java
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student("Rahul", 21);
+        Student s2 = new Student("Priya", 20);
+
+        System.out.println("Name: " + s1.name);
+        System.out.println("Age: " + s1.age);
+
+        System.out.println("Name: " + s2.name);
+        System.out.println("Age: " + s2.age);
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Name: Rahul
+Age: 21
+Name: Priya
+Age: 20
+```
+
+### 🧠 Memory Trick
+
+**One class → Many objects → Different data.**
+
+---
+
+## 3. Create and Call an Instance Method
+
+### 💡 Concept
+
+An instance method is a non-static method that belongs to an object. We normally call it using an object reference.
+
+### 💻 Code
+
+```java
+class Student {
+    void displayName(String name) {
+        System.out.println("Student Name: " + name);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.displayName("Rahul");
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Student Name: Rahul
+```
+
+### 🧠 Memory Trick
+
+**Define → Create object → Call method.**
+
+The method definition and method call must use the same name and compatible parameters.
+
+---
+
+## 4. Display Student Name Using an Instance Variable
+
+### 💡 Concept
+
+An instance variable belongs to an object. An instance method can directly access the instance variables of the same object.
+
+### 💻 Code
+
+```java
+class Student {
+    String name;
+
+    void displayName() {
+        System.out.println("Student Name: " + name);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.name = "Rahul";
+        s.displayName();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Student Name: Rahul
+```
+
+### 🧠 Memory Trick
+
+- `s.name = "Rahul";` stores a value.
+- `s.displayName();` calls the method.
+- `name` inside the instance method refers to the current object's field.
+
+---
+
+## 5. Calculate a Student's Next Age Using an Instance Method
+
+### 💡 Concept
+
+We can use an instance variable inside a method to perform calculations.
+
+### 💻 Code
+
+```java
+class StudentAge {
+    int age;
+
+    void displayNextAge() {
+        System.out.println("Current Age: " + age);
+
+        age = age + 1;
+
+        System.out.println("Next Year Age: " + age);
+    }
+
+    public static void main(String[] args) {
+        StudentAge s = new StudentAge();
+        s.age = 21;
+        s.displayNextAge();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Current Age: 21
+Next Year Age: 22
+```
+
+### 🧠 Memory Trick
+
+`age = age + 1;` means take the current value, add one, and store the result back into `age`.
+
+**Important:** This statement changes the object's stored age.
+
+---
+
+## 6. Check Passing Grade Using an Instance Variable
+
+### 💡 Concept
+
+The `if-else` statement allows a program to choose between two paths based on a condition.
+
+Here, marks of 35 or above mean Pass.
+
+### 💻 Code
+
+```java
+class StudentGrade {
+    int marks;
+
+    void checkResult() {
+        if (marks >= 35) {
+            System.out.println("Pass");
+        } else {
+            System.out.println("Fail");
+        }
+    }
+
+    public static void main(String[] args) {
+        StudentGrade s = new StudentGrade();
+        s.marks = 72;
+        s.checkResult();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Pass
+```
+
+### 🧠 Memory Trick
+
+- `if` → condition is true.
+- `else` → condition is false.
+- `>=` → greater than or equal to.
+
+---
+
+## 7. Find the Largest of Two Numbers Using Instance Variables
+
+### 💡 Concept
+
+Compare two values using `if-else` to identify the larger number.
+
+### 💻 Code
+
+```java
+class LargestNumber {
+    int a;
+    int b;
+
+    void findLargest() {
+        if (a > b) {
+            System.out.println("Largest = " + a);
+        } else {
+            System.out.println("Largest = " + b);
+        }
+    }
+
+    public static void main(String[] args) {
+        LargestNumber s = new LargestNumber();
+        s.a = 25;
+        s.b = 40;
+        s.findLargest();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Largest = 40
+```
+
+### 🧠 Memory Trick
+
+Compare first, then print the appropriate value.
+
+**Interview improvement:** This code handles equal values correctly too, because when `a == b`, it prints `b`, which is still the largest value.
+
+---
+
+## 8. Calculate the Square of a Number Using an Instance Method
+
+### 💡 Concept
+
+The square of a number is the number multiplied by itself.
+
+Formula: `square = number * number`
+
+### 💻 Code
+
+```java
+class SquareCalculator {
+    int num;
+
+    void calculateSquare() {
+        int square = num * num;
+        System.out.println("Square = " + square);
+    }
+
+    public static void main(String[] args) {
+        SquareCalculator s = new SquareCalculator();
+        s.num = 6;
+        s.calculateSquare();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Square = 36
+```
+
+### 🧠 Memory Trick
+
+Square means multiply **two copies** of the same number.
+
+---
+
+## 9. Calculate the Cube of a Number Using an Instance Method
+
+### 💡 Concept
+
+The cube of a number is the number multiplied by itself three times.
+
+Formula: `cube = number * number * number`
+
+### 💻 Code
+
+```java
+class CubeCalculator {
+    int num;
+
+    void calculateCube() {
+        int cube = num * num * num;
+        System.out.println("Cube = " + cube);
+    }
+
+    public static void main(String[] args) {
+        CubeCalculator s = new CubeCalculator();
+        s.num = 4;
+        s.calculateCube();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Cube = 64
+```
+
+### 🧠 Memory Trick
+
+- Square → 2 copies: `n * n`
+- Cube → 3 copies: `n * n * n`
+
+---
+
+## 10. Calculate the Sum of Two Numbers Using an Instance Method
+
+### 💡 Concept
+
+Addition combines two numbers to produce their sum.
+
+### 💻 Code
+
+```java
+class SumCalculator {
+    int a;
+    int b;
+
+    void calculateSum() {
+        int sum = a + b;
+        System.out.println("Sum = " + sum);
+    }
+
+    public static void main(String[] args) {
+        SumCalculator s = new SumCalculator();
+        s.a = 25;
+        s.b = 15;
+        s.calculateSum();
+    }
+}
+```
+
+### 📤 Output
+
+```text
+Sum = 40
+```
+
+### 🧠 Memory Trick
+
+`sum = a + b;` adds the two values and stores the result in a local variable.
+
+---
+
+# 🎯 Important Java Interview Tips
+
+## Instance Variable vs Local Variable
+
+| Instance variable | Local variable |
+|---|---|
+| Declared inside a class, outside methods | Declared inside a method or block |
+| Belongs to an object | Exists within its declaring scope |
+| Gets a default value if not explicitly initialized | Must be initialized before it is read |
+| Example: `int age;` | Example: `int sum = a + b;` |
+
+## Constructor vs Method
+
+| Constructor | Method |
+|---|---|
+| Initializes a new object | Performs an operation |
+| Name must match the class name | Can have any valid method name |
+| Has no return type | Has a return type, such as `void` or `int` |
+| Called during object creation | Called explicitly, or through other program execution |
+
+## Common Mistakes to Avoid
+
+1. Using `void` before a constructor name.
+2. Using different names in a method definition and method call.
+3. Confusing `name` with `Name` — Java is case-sensitive.
+4. Trying to access a local variable from another method.
+5. Forgetting to initialize an instance variable with the required input before using it.
+
+---
+
+# 🏆 Day 8 Revision Checklist
+
+- [ ] I understand parameterized constructors.
+- [ ] I can create multiple objects from one class.
+- [ ] I can define and call instance methods.
+- [ ] I understand instance and local variables.
+- [ ] I can use `if-else` conditions.
+- [ ] I can write the square, cube, age, largest-number, and sum programs independently.
+
+**Day 8 complete!** Keep these notes in your Java folder in GitHub. Revisit the checklist before starting your next session.
