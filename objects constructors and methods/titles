@@ -1,0 +1,12 @@
+# ☕ Java — Day 8: OOP Basics (Objects, Constructors & Methods)
+
+1. **Create a Student Class Using a Parameterized Constructor**
+2. **Create Two Student Objects Using the Same Constructor**
+3. **Create and Call an Instance Method**
+4. **Display Student Name Using an Instance Variable**
+5. **Calculate a Student's Next Age Using an Instance Method**
+6. **Check Passing Grade Using an Instance Variable**
+7. **Find the Largest of Two Numbers Using Instance Variables**
+8. **Calculate the Square of a Number Using an Instance Method**
+9. **Calculate the Cube of a Number Using an Instance Method**
+10. **Calculate the Sum of Two Numbers Using an Instance Method**
