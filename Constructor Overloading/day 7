@@ -1,0 +1,718 @@
+# ☕ JAVA DAY 9 — CONSTRUCTOR OVERLOADING & CHAINING
+
+## 🎯 Day 9 Learning Goals
+
+By the end of this day, you should understand:
+
+- Constructor overloading
+- Constructors with different parameters
+- The `this` keyword
+- Constructor chaining using `this()`
+- Default values and validation
+- Calculations inside constructors
+- Common constructor interview questions
+
+---
+
+## 1. Constructor Overloading with Name and Age
+
+### Concept
+
+Constructor overloading means creating multiple constructors in the same class with different parameter lists.
+
+```java
+class Person {
+    String name;
+    int age;
+
+    Person(String name) {
+        this.name = name;
+    }
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Person p1 = new Person("Niks");
+        Person p2 = new Person("Siri", 21);
+
+        System.out.println(p1.name);
+        System.out.println(p2.name + " " + p2.age);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Niks
+Siri 21
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+- `Person(String name)` accepts one argument.
+- `Person(String name, int age)` accepts two arguments.
+- Java selects the matching constructor based on the arguments supplied.
+
+**Dry run**
+
+- `new Person("Niks")` calls the one-parameter constructor.
+- `new Person("Siri", 21)` calls the two-parameter constructor.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per constructor call.
+
+---
+
+## 2. Constructor Overloading with Different Data Types
+
+### Concept
+
+Constructors can be overloaded using different parameter counts or types.
+
+```java
+class Product {
+    String name;
+    double price;
+    int quantity;
+
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    Product(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public static void main(String[] args) {
+        Product p1 = new Product("Laptop", 50000.0);
+        Product p2 = new Product("Phone", 20000.0, 2);
+
+        System.out.println(p1.name + " " + p1.price);
+        System.out.println(p2.name + " " + p2.price + " " + p2.quantity);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Laptop 50000.0
+Phone 20000.0 2
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+The first constructor accepts two arguments. The second accepts three.
+
+**Interview tip:** The parameter list determines which overloaded constructor is selected. Return type is not part of a constructor signature.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 3. Constructor Overloading with Different Parameter Order
+
+### Concept
+
+Parameter order can distinguish overloaded constructors when the parameter types appear in a different order.
+
+```java
+class Employee {
+    String name;
+    int id;
+
+    Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    Employee(int id, String name) {
+        this.name = name;
+        this.id = id;
+    }
+
+    public static void main(String[] args) {
+        Employee e1 = new Employee("Rahul", 101);
+        Employee e2 = new Employee(102, "Priya");
+
+        System.out.println(e1.name + " " + e1.id);
+        System.out.println(e2.name + " " + e2.id);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Rahul 101
+Priya 102
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Important:** Changing only parameter names does not create a new overloaded constructor. The parameter types, number, or order must distinguish the signatures.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 4. Constructor Overloading with Default Values
+
+### Concept
+
+A constructor can supply a default value when the caller does not provide one.
+
+```java
+class Book {
+    String title;
+    double price;
+
+    Book(String title, double price) {
+        this.title = title;
+        this.price = price;
+    }
+
+    Book(String title) {
+        this(title, 0.0);
+    }
+
+    public static void main(String[] args) {
+        Book b1 = new Book("Java", 450.0);
+        Book b2 = new Book("DSA");
+
+        System.out.println(b1.title + " " + b1.price);
+        System.out.println(b2.title + " " + b2.price);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Java 450.0
+DSA 0.0
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+`this(title, 0.0)` calls the two-parameter constructor and supplies `0.0` as the default price.
+
+**Memory trick:** Missing value? Use constructor chaining to supply a default.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 5. Constructor Overloading with Validation
+
+### Concept
+
+Validate input before storing it in an object's fields.
+
+```java
+class BankAccount {
+    String holder;
+    double balance;
+
+    BankAccount(String holder) {
+        this(holder, 1000.0);
+    }
+
+    BankAccount(String holder, double balance) {
+        this.holder = holder;
+
+        if (balance < 0) {
+            this.balance = 0.0;
+        } else {
+            this.balance = balance;
+        }
+
+        System.out.println("Holder: " + this.holder);
+        System.out.println("Balance: " + this.balance);
+    }
+
+    public static void main(String[] args) {
+        BankAccount b1 = new BankAccount("Rahul");
+        BankAccount b2 = new BankAccount("Priya", -500.0);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Holder: Rahul
+Balance: 1000.0
+Holder: Priya
+Balance: 0.0
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+- If no balance is provided, the constructor uses `1000.0`.
+- A negative balance is replaced with `0.0`.
+- `this.balance` refers to the instance variable.
+
+**Dry run for Priya**
+
+1. Input balance is `-500.0`.
+2. `balance < 0` evaluates to `true`.
+3. `this.balance` is assigned `0.0`.
+4. The stored balance is printed.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 6. Constructor Chaining Using `this()`
+
+### Concept
+
+`this()` calls another constructor in the same class.
+
+```java
+class Mobile {
+    String brand;
+    double price;
+
+    Mobile(String brand) {
+        this(brand, 15000.0);
+    }
+
+    Mobile(String brand, double price) {
+        this.brand = brand;
+        this.price = price;
+
+        System.out.println("Brand: " + this.brand);
+        System.out.println("Price: " + this.price);
+    }
+
+    public static void main(String[] args) {
+        Mobile m1 = new Mobile("Samsung");
+        Mobile m2 = new Mobile("Apple", 80000.0);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Brand: Samsung
+Price: 15000.0
+Brand: Apple
+Price: 80000.0
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+- `new Mobile("Samsung")` calls the one-parameter constructor.
+- `this(brand, 15000.0)` calls the two-parameter constructor.
+- The two-parameter constructor initializes the fields and prints them.
+
+**Critical rule:** A `this(...)` constructor invocation must be the first statement in its constructor.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 7. Chaining Three Constructors
+
+### Concept
+
+One constructor can call another, which then calls a third constructor.
+
+```java
+class Student {
+    String name;
+    int age;
+
+    Student() {
+        this("Unknown");
+    }
+
+    Student(String name) {
+        this(name, 18);
+    }
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Name: Unknown
+Age: 18
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Dry run**
+
+1. `new Student()` calls `Student()`.
+2. `this("Unknown")` calls `Student(String name)`.
+3. `this(name, 18)` calls `Student(String name, int age)`.
+4. The final constructor assigns the fields and prints the result.
+
+**Chain to remember**
+
+`Student()` → `Student(String)` → `Student(String, int)`
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) for this fixed chain.
+
+---
+
+## 8. Employee Constructor Chaining
+
+### Concept
+
+Use constructor chaining to supply a default employee name and salary.
+
+```java
+class Employee {
+    String name;
+    int salary;
+
+    Employee() {
+        this("Not Assigned");
+    }
+
+    Employee(String name) {
+        this(name, 20000);
+    }
+
+    Employee(String name, int salary) {
+        this.name = name;
+        this.salary = salary;
+
+        System.out.println("Name: " + this.name);
+        System.out.println("Salary: " + this.salary);
+    }
+
+    public static void main(String[] args) {
+        Employee e1 = new Employee();
+        Employee e2 = new Employee("Rahul", 35000);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Name: Not Assigned
+Salary: 20000
+Name: Rahul
+Salary: 35000
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+- `Employee()` delegates to `Employee(String)`.
+- `Employee(String)` delegates to `Employee(String, int)`.
+- The two-parameter constructor stores and prints the values.
+
+**Common mistake:** Writing `this("Not Assigned", 20000)` when no matching two-parameter constructor exists causes a compilation error.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 9. Product Constructor with Price Validation
+
+### Concept
+
+Use constructor chaining and validate a price before storing it.
+
+```java
+class Product {
+    String name;
+    double price;
+
+    Product() {
+        this("Unknown");
+    }
+
+    Product(String name) {
+        this(name, 100.0);
+    }
+
+    Product(String name, double price) {
+        this.name = name;
+
+        if (price < 0) {
+            this.price = 0.0;
+        } else {
+            this.price = price;
+        }
+
+        System.out.println("Name: " + this.name);
+        System.out.println("Price: " + this.price);
+    }
+
+    public static void main(String[] args) {
+        Product p1 = new Product();
+        Product p2 = new Product("Laptop", 50000.0);
+        Product p3 = new Product("Mouse", -50.0);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Name: Unknown
+Price: 100.0
+Name: Laptop
+Price: 50000.0
+Name: Mouse
+Price: 0.0
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Explanation**
+
+For the Mouse object:
+
+- The original price is `-50.0`.
+- The condition `price < 0` is true.
+- The stored price becomes `0.0`.
+- Printing `this.price` displays the validated value.
+
+**Common mistake:** Printing `price` instead of `this.price` displays the original input, even if the stored value was corrected.
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+## 10. Order Constructor with Discount Calculation
+
+### Concept
+
+Chain constructors and calculate the final amount after applying a percentage discount.
+
+Formula:
+
+\[
+\text{Final Amount}=\text{amount}-\frac{\text{amount}\times\text{discount}}{100}
+\]
+
+```java
+class Order {
+    String customer;
+    double amount;
+    double discount;
+
+    Order() {
+        this("Guest", 1000.0, 0.0);
+    }
+
+    Order(String customer) {
+        this(customer, 1000.0, 10.0);
+    }
+
+    Order(String customer, double amount, double discount) {
+        this.customer = customer;
+        this.amount = amount;
+        this.discount = discount;
+
+        double finalAmount =
+                this.amount - (this.amount * this.discount / 100);
+
+        System.out.println("Customer: " + this.customer);
+        System.out.println("Final Amount: " + finalAmount);
+    }
+
+    public static void main(String[] args) {
+        Order o1 = new Order();
+        Order o2 = new Order("Rahul");
+        Order o3 = new Order("Priya", 2000.0, 20.0);
+    }
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Output**
+
+```text
+Customer: Guest
+Final Amount: 1000.0
+Customer: Rahul
+Final Amount: 900.0
+Customer: Priya
+Final Amount: 1600.0
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Dry run**
+
+**Guest**
+
+- Amount = `1000.0`
+- Discount = `0.0%`
+- Final amount = `1000 - (1000 × 0 / 100) = 1000.0`
+
+**Rahul**
+
+- Amount = `1000.0`
+- Discount = `10.0%`
+- Final amount = `1000 - (1000 × 10 / 100) = 900.0`
+
+**Priya**
+
+- Amount = `2000.0`
+- Discount = `20.0%`
+- Final amount = `2000 - (2000 × 20 / 100) = 1600.0`
+
+**Complexity:** Time \(O(1)\), auxiliary space \(O(1)\) per object creation.
+
+---
+
+# 🧠 Important Java Keywords
+
+## `this`
+
+Refers to the current object.
+
+```java
+this.name = name;
+```
+
+The left-hand `this.name` is the instance variable. The right-hand `name` is the constructor parameter.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## `this()`
+
+Calls another constructor in the same class.
+
+```java
+Student() {
+    this("Unknown");
+}
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## Constructor vs. Method
+
+| Feature | Constructor | Method |
+|---|---|---|
+| Name | Same as class | Any valid method name |
+| Return type | No return type | Has a return type or `void` |
+| Purpose | Initialize an object | Perform an operation |
+| Called | During object creation | When invoked |
+| Overloading | Yes | Yes |
+
+---
+
+# ⚠️ Common Mistakes to Avoid
+
+1. **Calling a nonexistent constructor:** `this("Guest", 1000)` fails if there is no matching two-parameter constructor.
+2. **Wrong capitalization:** `Customer` and `customer` are different identifiers.
+3. **Using `this()` in the wrong position:** It must be the first statement in the constructor.
+4. **Only changing parameter names:** This does not overload a constructor.
+5. **Forgetting `this.field = parameter`:** The field may remain at its default value.
+6. **Printing the unvalidated parameter:** Print the stored field when you want the corrected value.
+7. **Putting statements directly in the class body:** Executable statements belong inside a constructor, method, or initializer block.
+8. **Confusing constructor chaining with creating another object:** `this(...)` invokes another constructor for the same object; `new` creates a new object.
+
+# 🎯 Interview Tips
+
+**Q1. What is constructor overloading?**
+
+Defining multiple constructors in the same class with different parameter lists.
+
+**Q2. What is constructor chaining?**
+
+Calling one constructor from another to reuse initialization logic.
+
+**Q3. Can a constructor return a value?**
+
+No. Constructors do not declare a return type, not even `void`.
+
+**Q4. Can `this()` and `super()` both be used as constructor invocations in the same constructor?**
+
+No. Both are constructor-invocation forms that must be first if used, so they cannot both appear as separate first statements in one constructor.
+
+**Q5. What happens if no constructor is written?**
+
+Java provides a default no-argument constructor only when the class declares no constructors.
+
+**Q6. Can constructors be inherited?**
+
+No. Constructors are not inherited.
+
+**Q7. What is the difference between `this` and `this()`?**
+
+- `this` refers to the current object.
+- `this()` invokes another constructor in the same class.
+
+# 🧩 Memory Tricks
+
+- **Overloading:** Same constructor name, different parameter list.
+- **`this.field`:** Current object's field.
+- **`this(...)`:** Call another constructor.
+- **Validation:** Check input → store corrected value → print stored value.
+- **Chaining:** Start with the requested constructor and follow each `this(...)` call until the final constructor runs.
+
+# ✅ Day 9 Revision Checklist
+
+- [ ] I can write overloaded constructors.
+- [ ] I can use `this.field` correctly.
+- [ ] I can chain two or three constructors.
+- [ ] I know `this()` must be first.
+- [ ] I can provide default values.
+- [ ] I can validate negative input.
+- [ ] I can calculate values inside a constructor.
+- [ ] I can identify constructor compilation errors.
+
+**Mastery target:** Aim for at least 75% confidence before moving to the next Java topic. Since you needed a few hints during today's programs, practise tracing constructor chains and writing them independently once more before considering the topic mastered.
